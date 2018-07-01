@@ -1,0 +1,282 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en-US"><![endif]-->
+<!--[if IE 7 ]>   <html class="ie ie7" lang="en-US"><![endif]-->
+<!--[if IE 8 ]>   <html class="ie ie8" lang="en-US"><![endif]-->
+<!--[if IE 9 ]>   <html class="ie ie9" lang="en-US"><![endif]-->
+<!--[if gt IE 9]><!--><html lang="en-US"><!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+
+
+<title>Visual Guide to CSS3 Flexbox: Flexbox Playground | </title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../carbon.css">
+<style>
+		body 			{ padding-top:42px !important; }
+		#demo-nav 		{ z-index:9999 !important; min-height:0; }
+		#demo-nav a 	{ padding-bottom:10px; padding-top:10px; }
+		#demo-nav a i 	{ margin-right:4px; }
+	</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/scotch.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+<link rel="stylesheet" href="../wp-content/themes/forty/demos/flexbox/css/style.css">
+<style>#main-header { font-size:30px; text-align:center; margin-bottom:30px; }
+#carbonads { top:auto !important; bottom:30px !Important; right:auto !Important; left:30px !important; }</style>
+
+</head>
+<body>
+<nav id="demo-nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="container-fluid">
+<ul class="nav navbar-nav">
+<li><a href="https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties"><i class="fa fa-arrow-circle-left"></i> Back to the Scotch.io Tutorial</a></li>
+</ul>
+</div>
+</nav>
+
+<div ng-app="flexboxDemoApp" ng-controller="AppCtrl">
+<h1 id="main-header">Flexbox Playground</h1>
+
+<md-content class="md-padding">
+<div layout-gt-md="row" layout="column">
+<div flex-gt-md="50" flex="100" class="right-padding">
+<h3>Children Width</h3>
+<div layout="row" layout-align="center center" class="code">
+<div flex="15">width: {{children_width}}%</div>
+<md-slider flex min="0" max="100" ng-model="children_width" aria-label="width"></md-slider>
+</div>
+<md-divider></md-divider>
+<h3>Parent Flex Properties &ndash; <span class="highlight">flex container</span></h3>
+<div layout="column" layout-gt-md="row" class="code">
+<div layout="row">
+<div flex>
+<strong>flex-direction</strong>
+<md-radio-group ng-model="parent.flexDirection">
+<md-radio-button value="row" class="highlight">row</md-radio-button>
+<md-radio-button value="row-reverse">row-reverse</md-radio-button>
+<md-radio-button value="column">column</md-radio-button>
+<md-radio-button value="column-reverse">column-reverse</md-radio-button>
+</md-radio-group>
+</div>
+<div flex>
+<strong>flex-wrap</strong>
+<md-radio-group ng-model="parent.flexWrap">
+<md-radio-button value="nowrap" class="highlight">nowrap</md-radio-button>
+<md-radio-button value="wrap">wrap</md-radio-button>
+<md-radio-button value="wrap-reverse">wrap-reverse</md-radio-button>
+</md-radio-group>
+</div>
+</div>
+<div layout="row">
+<div flex>
+<strong>justify-content</strong>
+<md-radio-group ng-model="parent.justifyContent">
+<md-radio-button value="flex-start" class="highlight">flex-start</md-radio-button>
+<md-radio-button value="flex-end">flex-end</md-radio-button>
+<md-radio-button value="center">center</md-radio-button>
+<md-radio-button value="space-between">space-between</md-radio-button>
+<md-radio-button value="space-around">space-around</md-radio-button>
+</md-radio-group>
+</div>
+<div flex>
+<strong>align-items</strong>
+<md-radio-group ng-model="parent.alignItems">
+<md-radio-button value="stretch" class="highlight">stretch</md-radio-button>
+<md-radio-button value="flex-start">flex-start</md-radio-button>
+<md-radio-button value="flex-end">flex-end</md-radio-button>
+<md-radio-button value="center">center</md-radio-button>
+<md-radio-button value="baseline">baseline</md-radio-button>
+</md-radio-group>
+</div>
+</div>
+<div layout="row">
+<div flex>
+<strong>align-content</strong>
+<md-radio-group ng-model="parent.alignContent">
+<md-radio-button value="stretch" class="highlight">stretch</md-radio-button>
+<md-radio-button value="flex-start">flex-start</md-radio-button>
+<md-radio-button value="flex-end">flex-end</md-radio-button>
+<md-radio-button value="center">center</md-radio-button>
+<md-radio-button value="space-between">space-between</md-radio-button>
+<md-radio-button value="space-around">space-around</md-radio-button>
+</md-radio-group>
+</div>
+</div>
+</div>
+<small>* The default properties are <span class="highlight">highlighed</span></small>
+<md-divider></md-divider>
+<h3>Children Flex Properties &ndash; <span class="highlight">flex items</span></h3>
+<div>
+<p>The children flex properties can be applied at child level, separate for each child. See the results below and change some of their properties. Hover with the mouse pointer or touch the fields to see the property name.</p>
+</div>
+<md-divider hide show-md></md-divider>
+</div>
+<div flex>
+<h3 class="pull-left">Result</h3>
+<p class="pull-right">
+<md-button class="md-accent md-raised" ng-click="addChild()">Add child</md-button>
+</p>
+<div class="clearfix"></div>
+<div class="flexbox-parent" ng-attr-style="
+              -webkit-flex-direction:  {{parent.flexDirection}};
+              flex-direction:          {{parent.flexDirection}};
+
+              -webkit-flex-wrap:       {{parent.flexWrap}};
+              flex-wrap:               {{parent.flexWrap}};
+
+              -webkit-justify-content: {{parent.justifyContent}};
+              justify-content:         {{parent.justifyContent}};
+
+              -webkit-align-items:     {{parent.alignItems}};
+              align-items:             {{parent.alignItems}};
+
+              -webkit-align-content:   {{parent.alignContent}};
+              align-content:           {{parent.alignContent}};
+              ">
+<div class="code md-whiteframe-z1" ng-repeat="child in children" ng-attr-style="
+                width:               {{children_width}}%;
+
+                -webkit-order:       {{child.order}};
+                order:               {{child.order}};
+
+                -webkit-flex-grow:   {{child.flexGrow}};
+                flex-grow:           {{child.flexGrow}};
+
+                -webkit-flex-shrink: {{child.flexShrink}};
+                flex-shrink:         {{child.flexShrink}};
+
+                -webkit-flex-basis:  {{child.flexBasis}};
+                flex-basis:          {{child.flexBasis}};
+
+                -webkit-align-self:  {{child.alignSelf}};
+                align-self:          {{child.alignSelf}};
+
+              ">
+<div class="clearfix">
+<span class="child-number" aria-label="Number">{{$index + 1}}</span>
+<span class="remove-child pull-right" ng-click="removeChild($index)" title="Remove">
+&#x2716;
+</span>
+</div>
+<div class="child-controls">
+<md-input-container>
+<md-tooltip md-direction="top">order</md-tooltip>
+<input type="number" ng-model="children[$index].order">
+</md-input-container>
+<md-input-container>
+<md-tooltip md-direction="top">flex-grow</md-tooltip>
+<input type="number" ng-model="children[$index].flexGrow">
+</md-input-container>
+<md-input-container>
+<md-tooltip md-direction="top">flex-shrink</md-tooltip>
+<input type="number" ng-model="children[$index].flexShrink">
+</md-input-container>
+<md-input-container>
+<md-tooltip md-direction="top">flex-basis</md-tooltip>
+<input type="text" ng-model="children[$index].flexBasis">
+</md-input-container>
+<md-input-container>
+<md-tooltip md-direction="top">align-self</md-tooltip>
+<md-select ng-model="children[$index].alignSelf">
+<md-option ng-value="value" ng-repeat="value in ['auto', 'flex-start', 'flex-end', 'center', 'baseline', 'stretch']">{{value}}</md-option>
+</md-select>
+</md-input-container>
+</div>
+</div>
+</div>
+</div>
+</div>
+</md-content>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
+
+<script>
+// Declare the flexboxDemoApp module and its dependency 'ngMaterial'
+var app = angular.module('flexboxDemoApp', ['ngMaterial']);
+// Declare the AppCtrl controller
+app
+.config(['$mdThemingProvider', function ($mdThemingProvider) {
+  $mdThemingProvider
+    .theme('default')
+    .accentPalette('amber', {
+      default: '700'
+    });
+}])
+.controller('AppCtrl', ['$scope', function ($scope) {
+  $scope.parent = {
+    flexDirection:  'row',
+    flexWrap:       'nowrap',
+    justifyContent: 'flex-start',
+    alignItems:     'stretch',
+    alignContent:   'stretch'
+  };
+
+  $scope.children_width = 12; // %
+
+  $scope.children  = [];
+
+  var addChild = function (order, flexGrow, flexShrink, flexBasis, alignSelf) {
+    $scope.children.push({
+      order:      order      || 0,
+      flexGrow:   flexGrow   || 0,
+      flexShrink: flexShrink || 1,
+      flexBasis:  flexBasis  || 'auto',
+      alignSelf:  alignSelf  || 'auto'
+    });
+  };
+  var removeChild = function (index) {
+    $scope.children.splice(index, 1);
+  };
+
+  $scope.addChild    = addChild;
+  $scope.removeChild = removeChild;
+
+  for (var i = 0; i < 5; i++) {
+    addChild();
+  }
+
+}]);
+
+    </script>
+</div>
+<script async type="text/javascript" src="https://cdn.carbonads.com/carbon.js?zoneid=1673&amp;serve=C6AILKT&amp;placement=scotchio" id="_carbonads_js"></script>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-36045075-1', 'auto');
+	ga('send', 'pageview');
+</script>
+</body>
+</html>
+
+

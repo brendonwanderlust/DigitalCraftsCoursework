@@ -1,0 +1,46 @@
+So you want to code with React, huh?
+Well, there's an easy way to set up your project with React, but I don't recommend it. You'll be able to create React components, but not to their full potential - You won't have access to JSX (well, you could if you include babel-standalone, but it slows down your project a lot), and your code will have to be either in one giant <script> tag, or distributed among many scripts with careful attention to their order. 
+
+1) Just include the CDN version of react and react-dom in your <head> tag
+
+2) Write your React code in a <script> tag at the end of your <body> tag
+
+You'll notice that your React code will look just as messy as your jQuery code, so what's the real benefit of doing it this way?
+
+The NPM way is the better way
+Setting up React with npm is more complicated, but it opens up the opportunity to use JSX and require() statements in your code. You won't have to worry about ordering <script> tags, or finding the latest CDN url. 
+
+1) Install express-generator globally with: npm install express-generator -g
+
+2) Generate a new express project with: express your-project-name
+
+      2a) Delete your views folder, you don't need it!
+
+      2b) Have your servers' index route serve up a static index.html file 
+
+2*) Alternatively, you could just set up an express server from scratch
+
+3) Install these packages:
+
+npm install react
+
+npm install react-dom
+
+npm install -g browserify
+
+npm install babelify babel-core
+
+npm install babel-preset-react babel-preset-es2015
+
+4) Add this script in your package.json file (make sure you put it in the "scripts" object):
+
+"build": "browserify -t [ babelify --presets [ babel-preset-react babel-preset-es2015 ] ] path/to/your/main.js -o path/to/your/compiled/file"
+
+5) In your index.html, add a single <script> tag that points to your compiled JS file
+
+create-react-app is the easiest way
+1) Install create-react-app globally with: sudo npm install create-react-app -g
+
+2) Generate a new react project with: create-react-app your-project-name
+
+3) cd into the new directory, npm install, and then run your app with npm start! Your react code should be in the /src folder

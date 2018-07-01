@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>01 - What is npm? | npm Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The place where all things npm are documented">
+  <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro:400,600,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="/styles/index.css">
+  <link rel="shortcut icon" href="/images/favicon.ico"  type="image/x-icon" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/js/main.js"></script>
+
+</head>
+
+<body data-page="">
+
+  <header>
+    <a id="www-link" href="https://www.npmjs.com">npmjs.com</a>
+  </header>
+
+  <a href="https://www.npmjs.com" id="logo">
+    <img src="/images/npm.svg">
+  </a>
+
+  <nav>
+      <section class="active">
+
+        <h2 title="Getting started">
+          <a href="#">Getting started</a>
+        </h2>
+
+        <div class="pages">
+            <a href="/getting-started/what-is-npm" class="active">01 - What is npm?</a>
+            <a href="/getting-started/searching-for-packages" >02 - How to find &amp; select packages</a>
+            <a href="/getting-started/installing-node" >03 - How to set up a new npm account &amp; install npm</a>
+            <a href="/getting-started/installing-npm-packages-locally" >04 - How to install local packages</a>
+            <a href="/getting-started/using-a-package.json" >05 - Working with package.json</a>
+            <a href="/getting-started/updating-local-packages" >06 - How to update local packages</a>
+            <a href="/getting-started/uninstalling-local-packages" >07 - How to uninstall local packages</a>
+            <a href="/getting-started/installing-npm-packages-globally" >08 - How to install global packages</a>
+            <a href="/getting-started/updating-global-packages" >09 - How to update global packages</a>
+            <a href="/getting-started/uninstalling-global-packages" >10 - How to uninstall global packages</a>
+            <a href="/getting-started/creating-node-modules" >11 - How to create Node.js modules</a>
+            <a href="/getting-started/publishing-npm-packages" >12 - How to publish &amp; update a package</a>
+            <a href="/getting-started/semantic-versioning" >13 - How to use semantic versioning</a>
+            <a href="/getting-started/scoped-packages" >14 - How to work with scoped packages</a>
+            <a href="/getting-started/using-tags" >15 - How to label packages with dist-tags</a>
+            <a href="/getting-started/using-two-factor-authentication" >16 - How to use two-factor authentication</a>
+            <a href="/getting-started/working_with_tokens" >17 - How to work with security tokens</a>
+            <a href="/getting-started/modifying_your_profile_from_command_line" >18 - How to change profile settings</a>
+            <a href="/getting-started/packages" >19 - Understanding packages and modules</a>
+            <a href="/getting-started/fixing-npm-permissions" >20 - How to prevent permissions errors</a>
+            <a href="/getting-started/running-a-security-audit" >21 - How to run a security audit with npm audit</a>
+            <a href="/getting-started/about-audit-reports" >22 - About audit reports</a>
+        </div>
+
+      </section>
+      <section >
+
+        <h2 title="Private packages">
+          <a href="#">Private packages</a>
+        </h2>
+
+        <div class="pages">
+            <a href="/private-modules/intro" >01 - Working with private packages</a>
+            <a href="/private-modules/ci-server-config" >02 - Downloading packages to CI/deployment servers</a>
+            <a href="/private-modules/docker-and-private-modules" >03 - Docker and private packages</a>
+        </div>
+
+      </section>
+      <section >
+
+        <h2 title="Troubleshooting">
+          <a href="#">Troubleshooting</a>
+        </h2>
+
+        <div class="pages">
+            <a href="/troubleshooting/try-the-latest-stable-version-of-node" >01 - Try the latest stable version of node</a>
+            <a href="/troubleshooting/try-the-latest-stable-version-of-npm" >02 - Try the latest stable version of npm</a>
+            <a href="/troubleshooting/if-your-npm-is-broken" >03 - If your npm is broken</a>
+            <a href="/troubleshooting/try-clearing-the-npm-cache" >04 - Try clearing the npm cache</a>
+            <a href="/troubleshooting/common-errors" >05 - Common Errors</a>
+        </div>
+
+      </section>
+      <section >
+
+        <h2 title="Using npm">
+          <a href="#">Using npm</a>
+        </h2>
+
+        <div class="pages">
+            <a href="/misc/coding-style" >coding-style</a>
+            <a href="/misc/config" >config</a>
+            <a href="/misc/developers" >developers</a>
+            <a href="/misc/disputes" >disputes</a>
+            <a href="/misc/orgs" >orgs</a>
+            <a href="/misc/registry" >registry</a>
+            <a href="/misc/removing-npm" >removing-npm</a>
+            <a href="/misc/scope" >scope</a>
+            <a href="/misc/scripts" >scripts</a>
+            <a href="/misc/semver" >semver</a>
+        </div>
+
+      </section>
+      <section >
+
+        <h2 title="CLI commands">
+          <a href="#">CLI commands</a>
+        </h2>
+
+        <div class="pages">
+            <a href="/cli/access" >access</a>
+            <a href="/cli/adduser" >adduser</a>
+            <a href="/cli/audit" >audit</a>
+            <a href="/cli/bin" >bin</a>
+            <a href="/cli/bugs" >bugs</a>
+            <a href="/cli/build" >build</a>
+            <a href="/cli/bundle" >bundle</a>
+            <a href="/cli/cache" >cache</a>
+            <a href="/cli/ci" >ci</a>
+            <a href="/cli/completion" >completion</a>
+            <a href="/cli/config" >config</a>
+            <a href="/cli/dedupe" >dedupe</a>
+            <a href="/cli/deprecate" >deprecate</a>
+            <a href="/cli/dist-tag" >dist-tag</a>
+            <a href="/cli/docs" >docs</a>
+            <a href="/cli/doctor" >doctor</a>
+            <a href="/cli/edit" >edit</a>
+            <a href="/cli/explore" >explore</a>
+            <a href="/cli/help" >help</a>
+            <a href="/cli/help-search" >help-search</a>
+            <a href="/cli/hook" >hook</a>
+            <a href="/cli/init" >init</a>
+            <a href="/cli/install" >install</a>
+            <a href="/cli/install-ci-test" >install-ci-test</a>
+            <a href="/cli/install-test" >install-test</a>
+            <a href="/cli/link" >link</a>
+            <a href="/cli/logout" >logout</a>
+            <a href="/cli/ls" >ls</a>
+            <a href="/cli/npm" >npm</a>
+            <a href="/cli/outdated" >outdated</a>
+            <a href="/cli/owner" >owner</a>
+            <a href="/cli/pack" >pack</a>
+            <a href="/cli/ping" >ping</a>
+            <a href="/cli/prefix" >prefix</a>
+            <a href="/cli/profile" >profile</a>
+            <a href="/cli/prune" >prune</a>
+            <a href="/cli/publish" >publish</a>
+            <a href="/cli/rebuild" >rebuild</a>
+            <a href="/cli/repo" >repo</a>
+            <a href="/cli/restart" >restart</a>
+            <a href="/cli/root" >root</a>
+            <a href="/cli/run-script" >run-script</a>
+            <a href="/cli/search" >search</a>
+            <a href="/cli/shrinkwrap" >shrinkwrap</a>
+            <a href="/cli/star" >star</a>
+            <a href="/cli/stars" >stars</a>
+            <a href="/cli/start" >start</a>
+            <a href="/cli/stop" >stop</a>
+            <a href="/cli/team" >team</a>
+            <a href="/cli/test" >test</a>
+            <a href="/cli/token" >token</a>
+            <a href="/cli/uninstall" >uninstall</a>
+            <a href="/cli/unpublish" >unpublish</a>
+            <a href="/cli/update" >update</a>
+            <a href="/cli/version" >version</a>
+            <a href="/cli/view" >view</a>
+            <a href="/cli/whoami" >whoami</a>
+        </div>
+
+      </section>
+      <section >
+
+        <h2 title="Configuring npm">
+          <a href="#">Configuring npm</a>
+        </h2>
+
+        <div class="pages">
+            <a href="/files/folders" >folders</a>
+            <a href="/files/npmrc" >npmrc</a>
+            <a href="/files/package-lock.json" >package-lock.json</a>
+            <a href="/files/package-locks" >package-locks</a>
+            <a href="/files/package.json" >package.json</a>
+            <a href="/files/shrinkwrap.json" >shrinkwrap.json</a>
+        </div>
+
+      </section>
+      <section >
+
+        <h2 title="npm, Inc.">
+          <a href="#">npm, Inc.</a>
+        </h2>
+
+        <div class="pages">
+            <a href="/company/about" >About npm</a>
+            <a href="/company/jobs" >Jobs at npm</a>
+            <a href="/company/weekly" >npm Weekly</a>
+            <a href="/company/policies" >npm, Inc. policies</a>
+            <a href="/company/private-packages" >Private packages and Orgs</a>
+            <a href="/company/security" >Security</a>
+        </div>
+
+      </section>
+    <a class="smallLink" href="/all">view all on one page</a>
+  </nav>
+  <div class="container">
+  <div class="breadcrumbs print-only">
+    <h3>Getting started</h3>
+  <span>What is npm?</span> > How to find &amp; select packages
+  </div>
+  <div id="page">
+    <!-- title: 01 - What is npm?
+featured: true
+-->
+<h1><a id="what-is-npm" class="anchor" href="#what-is-npm" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is npm?</h1>
+<p>npm opens up an entire world of JavaScript talent for you and your team. It's the world's largest software registry, with approximately 3 billion downloads per week. The registry contains over 600,000 <em>packages</em> (building blocks of code). Open-source developers from every continent use npm to share and borrow packages, and many organizations use npm to manage private development as well.</p>
+<p>Here is a quick introduction to npm:</p>
+<div class='youtube-video'><iframe width="670" height="480" src="https://www.youtube.com/embed/x03fjb2VlGY" frameborder="0" allowfullscreen></iframe></div>
+<p>npm consists of three distinct components:</p>
+<ul>
+<li>the website</li>
+<li>the Command Line Interface (CLI)</li>
+<li>the registry</li>
+</ul>
+<p>Use the <a href="https://npmjs.com"><em>website</em></a> to discover packages, set up profiles, and manage other aspects of your npm experience. For example, you can set up <a href="https://www.npmjs.com/features">Orgs</a> (organizations) to manage access to public or private packages.</p>
+<p>The <a href="https://docs.npmjs.com/cli/npm"><em>CLI</em></a> runs from a terminal. This is how most developers interact with npm.</p>
+<p>The <a href="https://docs.npmjs.com/misc/registry"><em>registry</em></a> is a large public database of JavaScript software and the meta-information surrounding it.</p>
+<h2><a id="use-npm-to---" class="anchor" href="#use-npm-to---" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use npm to . . .</h2>
+<ul>
+<li>Adapt packages of code to your apps, or incorporate packages as they are.</li>
+<li>Download standalone tools you can use right away.</li>
+<li>Run packages without downloading using <a href="https://www.npmjs.com/package/npx">npx</a>.</li>
+<li>Share code with any npm user, any where.</li>
+<li>Restrict code to specific developers.</li>
+<li>Form Orgs (organizations) to coordinate package maintenance, coding, and developers.</li>
+<li>Form virtual teams by using Orgs.</li>
+<li>Manage multiple versions of code and code dependencies.</li>
+<li>Update applications easily when underlying code is updated.</li>
+<li>Discover multiple ways to solve the same puzzle.</li>
+<li>Find other developers who are working on similar problems and projects.</li>
+</ul>
+<p>These are just a few examples of ways developers use npm. If you'd like to add a bullet point, comment <a href="https://github.com/npm/docs/issues/944">here</a>.</p>
+<h2><a id="where-do-i-start" class="anchor" href="#where-do-i-start" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Where do I Start?</h2>
+<p>Now that you know what npm is, and a bit about how to use it, it's time to get started.</p>
+<h3><a id="your-first-package-page" class="anchor" href="#your-first-package-page" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Your First Package Page</h3>
+<p>First, you create an npm account, which is explained in the next chapter. You will then have you own page on npmjs.com, which will be <a href="http://www.npmjs.com/~">http://www.npmjs.com/~</a><em>yourusername</em>.</p>
+<img src="/images/first-package-page.png" style="border: 1px solid gray;">
+<!--<<img src="first-package-page.png" style="border: 1px solid gray;">-->
+<p>As you publish packages, they will appear on your page. You can add organizations to invite others to work with you.</p>
+<p>After you set up an npm account, the next step is to use the commmand line interface (CLI) to <a href="https://docs.npmjs.com/getting-started/installing-node">install npm</a>. We look forward to seeing what you create!</p>
+<h2><a id="how-do-i-share-packages-or-collaborate-with-others" class="anchor" href="#how-do-i-share-packages-or-collaborate-with-others" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How do I share packages or collaborate with others?</h2>
+<p>If you choose to share your packages publicly, there is no cost. To use and share private packages, you need to upgrade your account. To share with others, create organizations, called <strong>npm Orgs</strong>,  and invite others to work with you, privately (for a fee) or publicly (for free). Or you can sign up for a custom, private type of npm for your company, called <strong>npmE</strong> for npm Enterprise.</p>
+<h2><a id="learn-more-about-npm-orgs-and-npme" class="anchor" href="#learn-more-about-npm-orgs-and-npme" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn more about npm Orgs and npmE</h2>
+<p><a href="https://www.npmjs.com/features">npm Orgs</a> provide tools for managing both public and private packages. Granting permissions is easy, and configuration is simplified.</p>
+<p>If you would prefer to have your own private registry, so that you can develop packages internally that are not shared publicly,  consider <a href="https://www.npmjs.com/enterprise">npm Enterprise</a>.</p>
+<h2><a id="learn-more" class="anchor" href="#learn-more" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Learn More</h2>
+<p>To learn more about npm as a product, new features on the way, and interesting uses of npm, sign up for our newsletter at <a href="https://www.npmjs.com/npm-weekly">npm-weekly</a>, and be sure to follow @npmjs on twitter.</p>
+<p>To explore additional features and options, click <a href="https://www.npmjs.com/pricing">here</a>.</p>
+<p>To learn about tools to manage multiple packages and collaborators, see <a href="https://www.npmjs.com/docs/orgs">npm Orgs</a>.</p>
+<p>To learn more about npm Enterprise, click <a href="https://npme.npmjs.com/docs">here</a>.</p>
+<p>For mentoring, tutorials, and learning, vist <a href="https://nodeschool.io">node school</a>. Consider attending or hosting a nodeschool event (usually free!) at a site near you, or use the self-help tools you can find on the site.</p>
+<h3><a id="cli-reference-doc--online-help" class="anchor" href="#cli-reference-doc--online-help" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewbox="0 0 16 16" width="16"><path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CLI Reference Doc / Online Help</h3>
+<p>While relevant CLI commands are covered throughout this user documentation, the CLI includes command line help, its own <a href="https://docs.npmjs.com/cli/help">documentation section, and instant help (man pages)</a>. When you click a doc about <a href="https://docs.npmjs.com/cli/help-search">any CLI command</a>, a list of all CLI commands appears in the left-hand side bar. You can also access the list of CLI commands by scrolling to CLI Commands on the <a href="https://docs.npmjs.com">docs home page</a>.</p>
+
+
+    <p class="colophon">
+        Last modified March 21, 2018
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      &nbsp;
+        Found a typo? Send a
+        <a href="https://github.com/npm/docs/edit/master/content/getting-started/what-is-npm.md">pull request!</a>
+
+    </p>
+
+  </div>
+</div>
+
+
+
+  <div class="toc">
+    <section id="plans">
+      <h2 title="npm Services">npm Services</h2>
+      <ul class="pageColumns">
+        <li>
+          <a href="https://www.npmjs.com/docs/orgs/">npm Orgs</a> -
+          <span class="faint heading">the npm Orgs documentation site</span>
+        </li>
+        <li>
+          <a href="https://npme.npmjs.com">npm Enterprise</a> -
+          <span class="faint heading">the npm Enterprise documentation site</span>
+        </li>
+      </ul>
+    </section>
+
+          <section id="getting-started">
+
+            <h2 title="Getting started">
+                Getting started
+            </h2>
+
+            <ul class="pageColumns">
+                <li>
+                  <a href="/getting-started/what-is-npm">01 - What is npm?</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/searching-for-packages">02 - How to find &amp; select packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/installing-node">03 - How to set up a new npm account &amp; install npm</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/installing-npm-packages-locally">04 - How to install local packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/using-a-package.json">05 - Working with package.json</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/updating-local-packages">06 - How to update local packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/uninstalling-local-packages">07 - How to uninstall local packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/installing-npm-packages-globally">08 - How to install global packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/updating-global-packages">09 - How to update global packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/uninstalling-global-packages">10 - How to uninstall global packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/creating-node-modules">11 - How to create Node.js modules</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/publishing-npm-packages">12 - How to publish &amp; update a package</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/semantic-versioning">13 - How to use semantic versioning</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/scoped-packages">14 - How to work with scoped packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/using-tags">15 - How to label packages with dist-tags</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/using-two-factor-authentication">16 - How to use two-factor authentication</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/working_with_tokens">17 - How to work with security tokens</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/modifying_your_profile_from_command_line">18 - How to change profile settings</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/packages">19 - Understanding packages and modules</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/fixing-npm-permissions">20 - How to prevent permissions errors</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/running-a-security-audit">21 - How to run a security audit with npm audit</a>
+                  
+                </li>
+                <li>
+                  <a href="/getting-started/about-audit-reports">22 - About audit reports</a>
+                  
+                </li>
+            </ul>
+
+          </section>
+          <section id="private-modules">
+
+            <h2 title="Private packages">
+                Private packages
+            </h2>
+
+            <ul class="pageColumns">
+                <li>
+                  <a href="/private-modules/intro">01 - Working with private packages</a>
+                  
+                </li>
+                <li>
+                  <a href="/private-modules/ci-server-config">02 - Downloading packages to CI/deployment servers</a>
+                  
+                </li>
+                <li>
+                  <a href="/private-modules/docker-and-private-modules">03 - Docker and private packages</a>
+                  
+                </li>
+            </ul>
+
+          </section>
+          <section id="troubleshooting">
+
+            <h2 title="Troubleshooting">
+                Troubleshooting
+            </h2>
+
+            <ul class="pageColumns">
+                <li>
+                  <a href="/troubleshooting/try-the-latest-stable-version-of-node">01 - Try the latest stable version of node</a>
+                  
+                </li>
+                <li>
+                  <a href="/troubleshooting/try-the-latest-stable-version-of-npm">02 - Try the latest stable version of npm</a>
+                  
+                </li>
+                <li>
+                  <a href="/troubleshooting/if-your-npm-is-broken">03 - If your npm is broken</a>
+                  
+                </li>
+                <li>
+                  <a href="/troubleshooting/try-clearing-the-npm-cache">04 - Try clearing the npm cache</a>
+                  
+                </li>
+                <li>
+                  <a href="/troubleshooting/common-errors">05 - Common Errors</a>
+                  
+                </li>
+            </ul>
+
+          </section>
+          <section id="misc">
+
+            <h2 title="Using npm">
+                Using npm
+            </h2>
+
+            <ul class="pageColumns">
+                <li>
+                  <a href="/misc/coding-style">coding-style</a>
+                  <span class="faint heading">npm&#x27;s &quot;funny&quot; coding style</span>
+                </li>
+                <li>
+                  <a href="/misc/config">config</a>
+                  <span class="faint heading">More than you probably want to know about npm configuration</span>
+                </li>
+                <li>
+                  <a href="/misc/developers">developers</a>
+                  <span class="faint heading">Developer Guide</span>
+                </li>
+                <li>
+                  <a href="/misc/disputes">disputes</a>
+                  <span class="faint heading">Handling Module Name Disputes</span>
+                </li>
+                <li>
+                  <a href="/misc/orgs">orgs</a>
+                  <span class="faint heading">Working with Teams &amp; Orgs</span>
+                </li>
+                <li>
+                  <a href="/misc/registry">registry</a>
+                  <span class="faint heading">The JavaScript Package Registry</span>
+                </li>
+                <li>
+                  <a href="/misc/removing-npm">removing-npm</a>
+                  <span class="faint heading">Cleaning the Slate</span>
+                </li>
+                <li>
+                  <a href="/misc/scope">scope</a>
+                  <span class="faint heading">Scoped packages</span>
+                </li>
+                <li>
+                  <a href="/misc/scripts">scripts</a>
+                  <span class="faint heading">How npm handles the &quot;scripts&quot; field</span>
+                </li>
+                <li>
+                  <a href="/misc/semver">semver</a>
+                  <span class="faint heading">The semantic versioner for npm</span>
+                </li>
+            </ul>
+
+          </section>
+          <section id="cli">
+
+            <h2 title="CLI commands">
+                CLI commands
+            </h2>
+
+            <ul class="pageColumns">
+                <li>
+                  <a href="/cli/access">access</a>
+                  <span class="faint heading">Set access level on published packages</span>
+                </li>
+                <li>
+                  <a href="/cli/adduser">adduser</a>
+                  <span class="faint heading">Add a registry user account</span>
+                </li>
+                <li>
+                  <a href="/cli/audit">audit</a>
+                  <span class="faint heading">Run a security audit</span>
+                </li>
+                <li>
+                  <a href="/cli/bin">bin</a>
+                  <span class="faint heading">Display npm bin folder</span>
+                </li>
+                <li>
+                  <a href="/cli/bugs">bugs</a>
+                  <span class="faint heading">Bugs for a package in a web browser maybe</span>
+                </li>
+                <li>
+                  <a href="/cli/build">build</a>
+                  <span class="faint heading">Build a package</span>
+                </li>
+                <li>
+                  <a href="/cli/bundle">bundle</a>
+                  <span class="faint heading">REMOVED</span>
+                </li>
+                <li>
+                  <a href="/cli/cache">cache</a>
+                  <span class="faint heading">Manipulates packages cache</span>
+                </li>
+                <li>
+                  <a href="/cli/ci">ci</a>
+                  <span class="faint heading">Install a project with a clean slate</span>
+                </li>
+                <li>
+                  <a href="/cli/completion">completion</a>
+                  <span class="faint heading">Tab Completion for npm</span>
+                </li>
+                <li>
+                  <a href="/cli/config">config</a>
+                  <span class="faint heading">Manage the npm configuration files</span>
+                </li>
+                <li>
+                  <a href="/cli/dedupe">dedupe</a>
+                  <span class="faint heading">Reduce duplication</span>
+                </li>
+                <li>
+                  <a href="/cli/deprecate">deprecate</a>
+                  <span class="faint heading">Deprecate a version of a package</span>
+                </li>
+                <li>
+                  <a href="/cli/dist-tag">dist-tag</a>
+                  <span class="faint heading">Modify package distribution tags</span>
+                </li>
+                <li>
+                  <a href="/cli/docs">docs</a>
+                  <span class="faint heading">Docs for a package in a web browser maybe</span>
+                </li>
+                <li>
+                  <a href="/cli/doctor">doctor</a>
+                  <span class="faint heading">Check your environments</span>
+                </li>
+                <li>
+                  <a href="/cli/edit">edit</a>
+                  <span class="faint heading">Edit an installed package</span>
+                </li>
+                <li>
+                  <a href="/cli/explore">explore</a>
+                  <span class="faint heading">Browse an installed package</span>
+                </li>
+                <li>
+                  <a href="/cli/help">help</a>
+                  <span class="faint heading">Get help on npm</span>
+                </li>
+                <li>
+                  <a href="/cli/help-search">help-search</a>
+                  <span class="faint heading">Search npm help documentation</span>
+                </li>
+                <li>
+                  <a href="/cli/hook">hook</a>
+                  <span class="faint heading">Manage registry hooks</span>
+                </li>
+                <li>
+                  <a href="/cli/init">init</a>
+                  <span class="faint heading">create a package.json file</span>
+                </li>
+                <li>
+                  <a href="/cli/install">install</a>
+                  <span class="faint heading">Install a package</span>
+                </li>
+                <li>
+                  <a href="/cli/install-ci-test">install-ci-test</a>
+                  
+                </li>
+                <li>
+                  <a href="/cli/install-test">install-test</a>
+                  
+                </li>
+                <li>
+                  <a href="/cli/link">link</a>
+                  <span class="faint heading">Symlink a package folder</span>
+                </li>
+                <li>
+                  <a href="/cli/logout">logout</a>
+                  <span class="faint heading">Log out of the registry</span>
+                </li>
+                <li>
+                  <a href="/cli/ls">ls</a>
+                  <span class="faint heading">List installed packages</span>
+                </li>
+                <li>
+                  <a href="/cli/npm">npm</a>
+                  <span class="faint heading">javascript package manager</span>
+                </li>
+                <li>
+                  <a href="/cli/outdated">outdated</a>
+                  <span class="faint heading">Check for outdated packages</span>
+                </li>
+                <li>
+                  <a href="/cli/owner">owner</a>
+                  <span class="faint heading">Manage package owners</span>
+                </li>
+                <li>
+                  <a href="/cli/pack">pack</a>
+                  <span class="faint heading">Create a tarball from a package</span>
+                </li>
+                <li>
+                  <a href="/cli/ping">ping</a>
+                  <span class="faint heading">Ping npm registry</span>
+                </li>
+                <li>
+                  <a href="/cli/prefix">prefix</a>
+                  <span class="faint heading">Display prefix</span>
+                </li>
+                <li>
+                  <a href="/cli/profile">profile</a>
+                  <span class="faint heading">Change settings on your registry profile</span>
+                </li>
+                <li>
+                  <a href="/cli/prune">prune</a>
+                  <span class="faint heading">Remove extraneous packages</span>
+                </li>
+                <li>
+                  <a href="/cli/publish">publish</a>
+                  <span class="faint heading">Publish a package</span>
+                </li>
+                <li>
+                  <a href="/cli/rebuild">rebuild</a>
+                  <span class="faint heading">Rebuild a package</span>
+                </li>
+                <li>
+                  <a href="/cli/repo">repo</a>
+                  <span class="faint heading">Open package repository page in the browser</span>
+                </li>
+                <li>
+                  <a href="/cli/restart">restart</a>
+                  <span class="faint heading">Restart a package</span>
+                </li>
+                <li>
+                  <a href="/cli/root">root</a>
+                  <span class="faint heading">Display npm root</span>
+                </li>
+                <li>
+                  <a href="/cli/run-script">run-script</a>
+                  <span class="faint heading">Run arbitrary package scripts</span>
+                </li>
+                <li>
+                  <a href="/cli/search">search</a>
+                  <span class="faint heading">Search for packages</span>
+                </li>
+                <li>
+                  <a href="/cli/shrinkwrap">shrinkwrap</a>
+                  <span class="faint heading">Lock down dependency versions for publication</span>
+                </li>
+                <li>
+                  <a href="/cli/star">star</a>
+                  <span class="faint heading">Mark your favorite packages</span>
+                </li>
+                <li>
+                  <a href="/cli/stars">stars</a>
+                  <span class="faint heading">View packages marked as favorites</span>
+                </li>
+                <li>
+                  <a href="/cli/start">start</a>
+                  <span class="faint heading">Start a package</span>
+                </li>
+                <li>
+                  <a href="/cli/stop">stop</a>
+                  <span class="faint heading">Stop a package</span>
+                </li>
+                <li>
+                  <a href="/cli/team">team</a>
+                  <span class="faint heading">Manage organization teams and team memberships</span>
+                </li>
+                <li>
+                  <a href="/cli/test">test</a>
+                  <span class="faint heading">Test a package</span>
+                </li>
+                <li>
+                  <a href="/cli/token">token</a>
+                  <span class="faint heading">Manage your authentication tokens</span>
+                </li>
+                <li>
+                  <a href="/cli/uninstall">uninstall</a>
+                  <span class="faint heading">Remove a package</span>
+                </li>
+                <li>
+                  <a href="/cli/unpublish">unpublish</a>
+                  <span class="faint heading">Remove a package from the registry</span>
+                </li>
+                <li>
+                  <a href="/cli/update">update</a>
+                  <span class="faint heading">Update a package</span>
+                </li>
+                <li>
+                  <a href="/cli/version">version</a>
+                  <span class="faint heading">Bump a package version</span>
+                </li>
+                <li>
+                  <a href="/cli/view">view</a>
+                  <span class="faint heading">View registry info</span>
+                </li>
+                <li>
+                  <a href="/cli/whoami">whoami</a>
+                  <span class="faint heading">Display npm username</span>
+                </li>
+            </ul>
+
+          </section>
+          <section id="files">
+
+            <h2 title="Configuring npm">
+                Configuring npm
+            </h2>
+
+            <ul class="pageColumns">
+                <li>
+                  <a href="/files/folders">folders</a>
+                  <span class="faint heading">Folder Structures Used by npm</span>
+                </li>
+                <li>
+                  <a href="/files/npmrc">npmrc</a>
+                  <span class="faint heading">The npm config files</span>
+                </li>
+                <li>
+                  <a href="/files/package-lock.json">package-lock.json</a>
+                  <span class="faint heading">A manifestation of the manifest</span>
+                </li>
+                <li>
+                  <a href="/files/package-locks">package-locks</a>
+                  <span class="faint heading">An explanation of npm lockfiles</span>
+                </li>
+                <li>
+                  <a href="/files/package.json">package.json</a>
+                  <span class="faint heading">Specifics of npm&#x27;s package.json handling</span>
+                </li>
+                <li>
+                  <a href="/files/shrinkwrap.json">shrinkwrap.json</a>
+                  <span class="faint heading">A publishable lockfile</span>
+                </li>
+            </ul>
+
+          </section>
+
+
+    <section id="viewAll">
+      <h2 title="View All">
+          <a href="/all">View All On One Page</a>
+      </h2>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+
+      <div id="npm-install-instructions" style="display:none">
+        <p>
+          The current stable version of npm is <a id="npm-stable-version"></a>
+        </p>
+
+        <p>
+          To upgrade, run: <code>npm install <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="197769745975786d7c6a6d">[email&#160;protected]</a> -g</code>
+        </p>
+      </div>
+
+      <p>
+        This site is a work in progress. If you find bugs in the docs or have documentation-related feature requests, please <a href="https://github.com/npm/docs/issues">let us know.</a> Submit npm issues on <a href="https://github.com/npm/npm/issues">the main issues page.</a>
+      </p>
+
+      <p>
+        Need help? Tweet at <a href="https://twitter.com/npm_support">@npm_support</a> or email <a href="/cdn-cgi/l/email-protection#2c5f595c5c435e586c425c41465f024f4341"><span class="__cf_email__" data-cfemail="d9aaaca9a9b6abad99b7a9b4b3aaf7bab6b4">[email&#160;protected]</span></a>.
+      </p>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script><script src="/js/marketing/google_analytics.js" type="text/javascript"></script>
+  <script src="/js/marketing/eloqua.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,1589 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width">
+
+  
+  <title>`flex-grow` is weird. Or is it? | CSS-Tricks</title>
+
+  <link rel="apple-touch-icon" href="https://cdn.css-tricks.com/apple-touch-icon.png">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-TileImage" content="https://cdn.css-tricks.com/mstile-144x144.png">
+
+  <meta property="fb:pages" content="124436167285">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://cdn.css-tricks.com/opensearch.xml" title="CSS-Tricks Search">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CssTricks">
+
+  <link rel="stylesheet" href="https://cloud.typography.com/610186/6645572/css/fonts.css">
+  <!--[if !IE]><!-->
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/style.css?v=15.9">
+  <!--<![endif]-->
+  <!--[if lt IE 9]>
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/css/oldie.css">
+  <![endif]-->
+  <!--[if IE 9]>
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/style.css?v=15.9>
+  <![endif]-->
+
+    
+  <script>window._wca = window._wca || [];</script>
+
+<!-- This site is optimized with the Yoast SEO plugin v7.7.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="The following is a guest post by Manuel Matuzovic. It illustrates how flex-grow works, weird quirks and all. Then he goes into several examples on how"/>
+<link rel="canonical" href="https://css-tricks.com/flex-grow-is-weird/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="`flex-grow` is weird. Or is it? | CSS-Tricks" />
+<meta property="og:description" content="The following is a guest post by Manuel Matuzovic. It illustrates how flex-grow works, weird quirks and all. Then he goes into several examples on how" />
+<meta property="og:url" content="https://css-tricks.com/flex-grow-is-weird/" />
+<meta property="og:site_name" content="CSS-Tricks" />
+<meta property="article:publisher" content="https://www.facebook.com/CSSTricks" />
+<meta property="article:tag" content="flexbox" />
+<meta property="article:section" content="Article" />
+<meta property="article:published_time" content="2015-12-26T09:16:11+00:00" />
+<meta property="article:modified_time" content="2017-04-10T18:37:04+00:00" />
+<meta property="og:updated_time" content="2017-04-10T18:37:04+00:00" />
+<meta property="og:image" content="https://cdn.css-tricks.com/wp-content/uploads/2014/03/css-tricks-star.png" />
+<meta property="og:image:secure_url" content="https://cdn.css-tricks.com/wp-content/uploads/2014/03/css-tricks-star.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="The following is a guest post by Manuel Matuzovic. It illustrates how flex-grow works, weird quirks and all. Then he goes into several examples on how" />
+<meta name="twitter:title" content="`flex-grow` is weird. Or is it? | CSS-Tricks" />
+<meta name="twitter:site" content="@Real_CSS_Tricks" />
+<meta name="twitter:image" content="//css-tricks.com/wp-content/uploads/2015/12/step1.jpg" />
+<meta name="twitter:creator" content="@mmatuzo" />
+<script type='application/ld+json'>{"@context":"https:\/\/schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/css-tricks.com\/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/css-tricks.com\/flex-grow-is-weird\/","name":"`flex-grow` is weird. Or is it?"}}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="CSS-Tricks &raquo; `flex-grow` is weird. Or is it? Comments Feed" href="https://css-tricks.com/flex-grow-is-weird/feed/" />
+<style id='woocommerce-inline-inline-css' type='text/css'>
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel='stylesheet' id='jetpack-search-widget-css'  href='https://cdn.css-tricks.com/wp-content/plugins/jetpack/modules/widgets/search/css/search-widget-frontend.css?ver=4.9.6' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widget-social-icons-styles-css'  href='https://cdn.css-tricks.com/wp-content/plugins/jetpack/modules/widgets/social-icons/social-icons.css?ver=20170506' type='text/css' media='all' />
+<link rel='stylesheet' id='social-logos-css'  href='https://cdn.css-tricks.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=1' type='text/css' media='all' />
+<script  src='https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/js/libs/jquery-3.2.1.min.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js?ver=20150408'></script>
+<link rel='https://api.w.org/' href='https://css-tricks.com/wp-json/' />
+<link rel='shortlink' href='https://wp.me/p354tK-Zr0' />
+<link rel="alternate" type="application/json+oembed" href="https://css-tricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcss-tricks.com%2Fflex-grow-is-weird%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://css-tricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcss-tricks.com%2Fflex-grow-is-weird%2F&#038;format=xml" />
+<!-- Better Art Direction Styles -->
+
+
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<link rel='dns-prefetch' href='//jetpack.wordpress.com'/>
+<link rel='dns-prefetch' href='//s0.wp.com'/>
+<link rel='dns-prefetch' href='//s1.wp.com'/>
+<link rel='dns-prefetch' href='//s2.wp.com'/>
+<link rel='dns-prefetch' href='//public-api.wordpress.com'/>
+<link rel='dns-prefetch' href='//0.gravatar.com'/>
+<link rel='dns-prefetch' href='//1.gravatar.com'/>
+<link rel='dns-prefetch' href='//2.gravatar.com'/>
+<style type='text/css'>img#wpstats{display:none}</style>	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<script async src='https://stats.wp.com/s-201826.js'></script>
+
+</head>
+
+<body class="post-template-default single single-post postid-236158 single-format-standard woocommerce-no-js category-article">
+
+  <header class="site-header">
+
+  <div class="menu-toggle-area">
+    <button id="mobile-menu-toggle" class="button button-header mobile-menu-toggle">
+      <svg class="icon-menu" width="26px" height="26px">
+        <use xlink:href="#icon-menu"></use>
+      </svg>
+    </button>
+  </div>
+
+  <div class="logo">
+    <a href="/">
+      <svg class="icon-logo-star" width="26px" height="26px">
+        <use xlink:href="#icon-logo-star"></use>
+      </svg>
+    </a>
+  </div>
+
+  <div class="header-middle-area">
+
+    <a href="/" class="logo-link">
+      CSS-Tricks
+    </a>
+
+  </div>
+
+  <button id="search-opener" class="button button-header search-opener-button">
+    <svg class="icon-search" width="26px" height="26px">
+      <use xlink:href="#icon-search"></use>
+    </svg>
+    <svg class="icon-close" width="26px" height="26px">
+      <use xlink:href="#icon-close"></use>
+    </svg>
+  </button>
+
+  <div class="search" role="search" id="search-area">
+              <div class="chw-widget"><form role="search" method="get" id="searchform" class="search-form" action="https://css-tricks.com/">
+
+  <label class="screen-reader-text" id="search-label" for="s">Search for:</label>
+
+  <input type="search" value="" required name="s" id="s" aria-labelledby="search-label" class="search-field" placeholder="flexbox" value="">
+
+    <input type="hidden" name="orderby" value="relevance">
+  <input type="hidden" name="post_type" value="post,page,guide">
+
+  <button type="submit" class="button button-header search-button">
+    <svg class="icon-search" width="26px" height="26px">
+      <use xlink:href="#icon-search"></use>
+    </svg>
+  </button>
+
+</form></div>          </div>
+
+</header>
+
+    <div class="all-site-wrap">
+  
+    <nav class="main-nav" id="main-nav">
+
+  <ul>
+    <li class="home">
+      <a href="/">
+        <svg class="icon-nav-home" width="26px" height="26px">
+          <use xlink:href="#icon-nav-home"></use>
+        </svg>
+        <span>Home</span>
+      </a>
+    </li>
+    <li class="videos">
+      <a href="/video-screencasts/">
+        <svg class="icon-nav-video" width="26px" height="26px">
+          <use xlink:href="#icon-nav-video"></use>
+        </svg>
+        <span>Videos</span>
+      </a>
+    </li>
+    <li class="almanac">
+      <a href="/almanac/">
+        <svg class="icon-nav-almanac" width="26px" height="26px">
+          <use xlink:href="#icon-nav-almanac"></use>
+        </svg>
+        <span>Almanac</span>
+      </a>
+    </li>
+    <li class="gallery">
+      <a href="/gallery/">
+        <svg class="icon-nav-gallery" width="26px" height="26px">
+          <use xlink:href="#icon-nav-gallery"></use>
+        </svg>
+        <span>Gallery</span>
+      </a>
+    </li>
+    <li class="snippets">
+      <a href="/snippets/">
+        <svg class="icon-nav-snippets" width="26px" height="26px">
+          <use xlink:href="#icon-nav-snippets"></use>
+        </svg>
+        <span>Snippets</span>
+      </a>
+    </li>
+    <li class="forums">
+      <a href="/forums/">
+        <svg class="icon-nav-forums" width="26px" height="26px">
+          <use xlink:href="#icon-nav-forums"></use>
+        </svg>
+        <span>Forums</span>
+      </a>
+    </li>
+    <li class="newsletter">
+      <a href="/newsletters/">
+        <svg class="icon-nav-newsletter" width="26px" height="26px">
+          <use xlink:href="#icon-nav-newsletter"></use>
+        </svg>
+        <span>Newsletter</span>
+      </a>
+    </li>
+    <li class="jobs">
+      <a href="/jobs/">
+        <svg class="icon-nav-jobs" width="26px" height="26px">
+          <use xlink:href="#icon-nav-jobs"></use>
+        </svg>
+        <span>Jobs</span>
+      </a>
+    </li>
+    <li class="guides">
+      <a href="/guides/">
+        <svg class="icon-nav-guide" width="26px" height="26px">
+          <use xlink:href="#icon-nav-guide"></use>
+        </svg>
+        <span>Guides</span>
+      </a>
+    </li>
+    <li class="shop">
+      <a href="/shop/">
+        <svg class="icon-nav-shop" width="26px" height="26px">
+          <use xlink:href="#icon-nav-shop"></use>
+        </svg>
+        <span>Shop</span>
+      </a>
+    </li>
+  </ul>
+
+</nav>
+<div class="page-wrap">
+
+  <article id="post-236158" role="main" class="instapaper_body h-entry e-content">
+
+    <header class="mega-header">
+
+      <h1 class="p-name">
+                `flex-grow` is weird. Or is&nbsp;it?              </h1>
+
+    </header>
+
+    <p class="author-byline">
+
+      <span class="author-and-date">
+                By
+        <a href="https://css-tricks.com/author/mmatuzo/">
+                    <span class="p-author">
+            Manuel Matuzovic          </span>
+        </a>
+                <span class="slashes">On</span>
+        <time datetime="2015-12-26" class="dt-published">
+          December 26, 2015        </time>
+      </span>
+
+              <span class="byline-tags">
+          <svg class="icon-tag" width="12px" height="12px"><use xlink:href="#icon-tag"></use></svg><a href="https://css-tricks.com/tag/flexbox/" rel="tag">flexbox</a>        </span>
+      
+    </p>
+
+    <div class="article-content">
+
+      
+      <p><em class="explanation">The following is a guest post by <a href="https://matuzo.at/">Manuel Matuzovic</a>. It illustrates how flex-grow works, weird quirks and all. Then he goes into several examples on how common layout patterns may be implemented using <code>flex-grow</code> and <code>flex-basis</code>.</em></p>
+<p>When I found out about <code>flex-grow</code>, I made a <a href="http://codepen.io/matuzo/pen/zvXQyj">simple demo</a> to find out what it did and how it worked.<br />
+I thought I got everything figured out, but when I tried it on a website a colleague has recently made, nothing worked as expected. No matter what we did, the layout didn't look and work like it did in my demo. That got me thinking and I started to doubt that I knew what <code>flex-grow</code> was all about.</p>
+<p><span id="more-236158"></span></p>
+<h3>How flex-grow <em>doesn't</em> work</h3>
+<p>Before we are going to take a deep dive into the functionality of <code>flex-grow</code>, I want to explain to you what I got wrong at first. </p>
+<p>I thought that all flex items with <code>flex-grow</code> set to <code>1</code> would have an equal width. If one of the items had <code>flex-grow</code> set to <code>2</code> that item would be twice as big as all the others. </p>
+<p>This sounds great. It seems as if this is exactly what's happening in <a href="http://codepen.io/matuzo/pen/zvXQyj">the Pen I mentioned before</a>. The parent element is 900px wide, the section with <code>flex-grow: 2</code> has a calculated width of 600px and the aside element with <code>flex-grow: 1</code> has a calculated width of 300px. </p>
+<p>As you can see, everything works out perfectly in this demo, but it did not work at all in a real life example, even though we used the exact same CSS. As it turns out, the problem wasn't the CSS, but the content (or lack of content). The demo I made works, because by only using two empty elements I created a test case that was <em>too simple</em> to depict the important specifics of the property.</p>
+<h3>How <code>flex-grow</code> really works</h3>
+<p>I just described how <code>flex-grow</code> does <em>not</em> work, but I showed you a demo that actually <em>does do</em> what I claim it does not (<em>Later on in this article I will explain the reason for this.</em>).</p>
+<p>To clarify things, let me show you <a href="http://codepen.io/matuzo/pen/ZQEWjg">another Pen</a>. We have got the exact same setup as in the <a href="http://codepen.io/matuzo/pen/zvXQyj">first pen</a>, but this time the section and aside elements aren't empty. Now the ratio isn't 2:1 anymore and the element with flex-grow set to 1 is actually bigger than the element with flex-grow set to 2.</p>
+<h4>Explanation</h4>
+<p>If we apply <code>display: flex;</code> to the parent element and don't change anything else, the child elements will be stacked horizontally, no matter what. If there isn't enough space, they will shrink in size. If on the other hand there is more than enough space, they won't grow, because Flexbox wants us to define how much they should grow. So rather than telling the browser how wide an element should be, <em>flex-grow</em> determines how the remaining space is distributed amongst the flex items and how big the share is each item receives. </p>
+<p>Or in other words:</p>
+<blockquote><p>A flex container distributes free space to its items (proportionally to their flex grow factor) to fill the containers, or shrinks them (proportionally to their flex shrink factor) to prevent overflow.</p></blockquote>
+<p><a href="https://drafts.csswg.org/css-flexbox/#flexibility">https://drafts.csswg.org/css-flexbox/#flexibility</a></p>
+<h4>Demonstration</h4>
+<p>The concept is much easier to understand if we visualise it.</p>
+<p>First we set the <code>display</code> property of our parent element  to <code>flex</code> and by doing that our child elements become flex items and are positioned horizontally next to each other.</p>
+<figure id='post-236165' class='align-right media-236165'><img sizes="(min-width: 1850px) calc( (100vw - 555px) / 3 )
+       (min-width: 1251px) calc( (100vw - 530px) / 2 )
+       (min-width: 1086px) calc(100vw - 480px)
+       (min-width: 626px)  calc(100vw - 335px)
+                           calc(100vw - 30px)" srcset="https://cdn.css-tricks.com/wp-content/uploads/2015/12/step1.jpg 960w, https://cdn.css-tricks.com/wp-content/uploads/2015/12/step1-300x58.jpg 300w, https://cdn.css-tricks.com/wp-content/uploads/2015/12/step1-768x147.jpg 768w" src='//cdn.css-tricks.com/wp-content/uploads/2015/12/step1.jpg' alt='' /></figure>
+<p>Next we decide how many shares of the extra space each element receives. In our previous example the first element receives 2/3 of the remaining space (<code>flex-grow: 2</code>) and the second element 1/3 (<code>flex-grow: 1</code>). By knowing how many flex-grow values we have in total, we know by which number to divide the remaining space.</p>
+<figure id='post-236163' class='align-right media-236163'><img sizes="(min-width: 1850px) calc( (100vw - 555px) / 3 )
+       (min-width: 1251px) calc( (100vw - 530px) / 2 )
+       (min-width: 1086px) calc(100vw - 480px)
+       (min-width: 626px)  calc(100vw - 335px)
+                           calc(100vw - 30px)" srcset="https://cdn.css-tricks.com/wp-content/uploads/2015/12/step2.jpg 960w, https://cdn.css-tricks.com/wp-content/uploads/2015/12/step2-300x58.jpg 300w, https://cdn.css-tricks.com/wp-content/uploads/2015/12/step2-768x147.jpg 768w" src='//cdn.css-tricks.com/wp-content/uploads/2015/12/step2.jpg' alt='' /></figure>
+<p>Finally we have the number of distributable pieces. Each element receives the appropriate number of pieces based on its <code>flex-grow</code> value.</p>
+<figure id='post-236164' class='align-right media-236164'><img sizes="(min-width: 1850px) calc( (100vw - 555px) / 3 )
+       (min-width: 1251px) calc( (100vw - 530px) / 2 )
+       (min-width: 1086px) calc(100vw - 480px)
+       (min-width: 626px)  calc(100vw - 335px)
+                           calc(100vw - 30px)" srcset="https://cdn.css-tricks.com/wp-content/uploads/2015/12/step3.jpg 960w, https://cdn.css-tricks.com/wp-content/uploads/2015/12/step3-300x58.jpg 300w, https://cdn.css-tricks.com/wp-content/uploads/2015/12/step3-768x147.jpg 768w" src='//cdn.css-tricks.com/wp-content/uploads/2015/12/step3.jpg' alt='' /></figure>
+<h4>Calculation</h4>
+<p>Theory and visual representations are nice, but let's get dirty and do the math for <a href="http://codepen.io/matuzo/pen/ZQEWjg">the above example</a>.</p>
+<p>For our calculation we need 4 numbers: The parent width, the initial width of our section and our aside element and the total number of flex-grow values we'll use.</p>
+<p>parent width: <strong>900px</strong><br />
+section width: <strong>99px</strong><br />
+aside width: <strong>623px</strong><br />
+total flex-grow values: <strong>3</strong></p>
+<p><strong>1. First we have to calculate the remaining space</strong></p>
+<p>That's pretty easy. We take the parents width and subtract the total initial width of every child element.</p>
+<pre><code>900 - 99 - 623 = 178</code></pre>
+<p>parent width - initial section width - initial aside width = remaining space</p>
+<p><strong>2. Next we have to determine how much one <code>flex-grow</code> is</strong></p>
+<p>Now that we have the remaining space we need to determine into how many slices we want to cut it. The important thing here is that we don't divide the remaining space by the number of elements, but by the number of total flex-grow values. So in our case that's 3 (<code>flex-grow: 2</code> + <code>flex-grow: 1</code>)</p>
+<pre><code>178 / 3 = 59.33</code></pre>
+<p>remaining space / total flex-grow values = “one flex-grow”</p>
+<p><strong>3. Finally the sliced up remaining space gets distributed between all elements</strong></p>
+<p>Based on their flex-grow values the section receives 2 slices (2 * 59.33) and the aside 1 (1 * 59.33). These numbers are added to the initial width of each element.</p>
+<pre><code>99 + (2 * 59.33) = 217.66 (≈218px)</code></pre>
+<p>initial section width + (section flex-grow value * “one flex-grow”) = new width</p>
+<p>and</p>
+<pre><code>623 + (1 * 59.33) = 682.33 (≈682px)</code></pre>
+<p>initial aside width + (aside flex-grow value * “one flex-grow”) = new width</p>
+<p>Easy cheesy, right?</p>
+<h3>Alright, but why does the first demo work?</h3>
+<p>We have the formula, now lets find out why we actually got the numbers we wanted in the <a href="http://codepen.io/matuzo/pen/zvXQyj">first Pen</a> even though we didn't know what we were doing.</p>
+<p>parent width: <strong>900px</strong><br />
+section width: <strong>0px</strong><br />
+aside width: <strong>0px</strong><br />
+total flex-grow values: <strong>3</strong></p>
+<p><strong>1. Calculate the remaining space</strong>  </p>
+<pre><code>900 - 0 - 0 = 900</code></pre>
+<p><strong>2. Determine how much <em>one flex-grow</em> is</strong>  </p>
+<pre><code>900 / 3 = 300</code></pre>
+<p><strong>3. Distribute the sliced up remaining space</strong>  </p>
+<pre><code>0 + (2 * 300) = 600  
+0 + (1 * 300) = 300</code></pre>
+<p>If the width of each element is 0, the remaining space equals the actual width of the parent element and thus it looks like <code>flex-grow</code> divides the parent element's width in proportional parts.</p>
+<h3><code>flex-grow</code> and <code>flex-basis</code></h3>
+<p>Just a quick recap: <code>flex-grow</code> will take the remaining space and divide it by the total amount of flex grow values. The resulting quotient is multiplied by the respective <code>flex-grow</code> value and the result is added to each child elements initial width.</p>
+<p>But what if there's no remaining space or what if we don't want to rely on the elements initial width, but on a value we set? Can't we still use <code>flex-grow</code>?</p>
+<p>Of course we can. There is a property called <code>flex-basis</code> which defines the initial size of an element. If you use <code>flex-basis</code> in conjunction with <code>flex-grow</code> the way the widths are calculated changes.</p>
+<blockquote><p><code>&lt;‘flex-basis’&gt;</code> This component sets the <code>flex-basis</code> longhand and specifies the flex basis: the initial main size of the flex item, before free space is distributed according to the flex factors.</p></blockquote>
+<p><a href="https://drafts.csswg.org/css-flexbox/#valdef-flex-flex-basis">https://drafts.csswg.org/css-flexbox/#valdef-flex-flex-basis</a></p>
+<p>The big difference if we apply <code>flex-basis</code> to an element is that we don't use its initial width in our calculation anymore, but the value of its <code>flex-basis</code> property.</p>
+<p>I have adapted our previous example by adding <code>flex-basis</code> to each element. <a href="http://codepen.io/matuzo/pen/GoRqOP">Here's the Pen</a> for you. </p>
+<p>parent width: <strong>900px</strong><br />
+section width: <strong>400px</strong> (flex-basis value)<br />
+aside width: <strong>200px</strong> (flex-basis value)<br />
+total flex-grow values: <strong>3</strong></p>
+<p><strong>1. Calculate the remaining space</strong>  </p>
+<pre><code>900 - 400 - 200 = 300</code></pre>
+<p><strong>2. Determine how much one flex-grow is</strong>  </p>
+<pre><code>300 / 3 = 100</code></pre>
+<p><strong>3. Distribute the sliced up remaining space</strong>  </p>
+<pre><code>400 + (2 * 100) = 600  
+200 + (1 * 100) = 300</code></pre>
+<p>Just for the sake of completeness, you don't have to use pixel values and hope for the best, <a href="http://codepen.io/matuzo/pen/pgobag">percentages work as well</a>.</p>
+<h3>Working with the box model</h3>
+<p>So to cover everything, let's check out what happens if we add padding and margin. <a href="http://codepen.io/matuzo/pen/Qybgee">Nothing too special</a> actually. In the first step of the calculation you just have to remember to subtract the margins as well.</p>
+<p>The only thing to note is that in terms of <code>box-sizing</code> <code>flex-basis</code> behaves like the <code>width</code> property. That means that the calculation as well as the results change <a href="http://codepen.io/matuzo/pen/wMaeVO">if the <code>box-sizing</code> property changes</a>. If <code>box-sizing</code> was set to <code>border-box</code>, you would only work with the <code>flex-basis</code> and <code>margin</code> values in your calculation, because the <code>padding</code> is already included in the width.</p>
+<h3>Some useful examples</h3>
+<p>Alright, enough with the math. Let me give you some examples of how you're able to establish <code>flex-grow</code> effectively in your projects. </p>
+<h4>No more <code>width: [ x ]%</code></h4>
+<p>Due to the fact that the remaining space gets distributed automatically, we don't need to think about width values anymore, if we want our child elements to fill the parent element.</p>
+<p data-height="268" data-theme-id="1" data-slug-hash="QyWEBb" data-default-tab="result" data-user="matuzo" class='codepen'>See the Pen <a href='http://codepen.io/matuzo/pen/QyWEBb/'>QyWEBb</a> by Manuel Matuzovic (<a href='http://codepen.io/matuzo'>@matuzo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<h4>The “Holy Grail” 3 column liquid layout with pixel-widths</h4>
+<p>Mixing fixed and fluid widths in column layouts is possible with float, but it is neither intuitive or easy nor flexible. Of course with Flexbox and a little <em>flex-grow</em> and <em>flex-basis</em> magic that is a piece of cake.</p>
+<p data-height="268" data-theme-id="1" data-slug-hash="jbRjMG" data-default-tab="result" data-user="matuzo" class='codepen'>See the Pen <a href='http://codepen.io/matuzo/pen/jbRjMG/'>jbRjMG</a> by Manuel Matuzovic (<a href='http://codepen.io/matuzo'>@matuzo</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<h4>Filling remaining space with any element</h4>
+<p>If you, for example, have an input field next to a label and you want the input field to fill the rest of the space, you don't need ugly hacks anymore.</p>
+<p data-height="268" data-theme-id="1" data-slug-hash="eJYdWV" data-default-tab="result" data-user="matuzo" class='codepen'>See the Pen <a href='http://codepen.io/matuzo/pen/eJYdWV/'>eJYdWV</a> by Manuel Matuzovic (<a href='http://codepen.io/matuzo'>@matuzo</a>) on <a href='http://codepen.io'>CodePen</a>.<script async src="//assets.codepen.io/assets/embed/ei.js"></script></p>
+<p>You can find more examples on Philip Waltons <a href="https://philipwalton.github.io/solved-by-flexbox/">Solved by Flexbox</a>.</p>
+<h3>Listening to the specs</h3>
+<p>According to the specs, we should use the <code>flex</code> shorthand rather than <code>flex-grow</code> directly.</p>
+<blockquote><p>Authors are encouraged to control flexibility using the <code>flex</code> shorthand rather than <code>flex-grow</code> directly, as the shorthand correctly resets any unspecified components to accommodate common uses.</p></blockquote>
+<p><a href="https://drafts.csswg.org/css-flexbox/#flex-grow-property">https://drafts.csswg.org/css-flexbox/#flex-grow-property</a></p>
+<p>But be careful! If you just use <code>flex: 1;</code> some of the above examples won't work anymore, because the values set for the <em>common uses</em> don't equal the default values and thus interfere with our needs.</p>
+<p>If you want to use <code>flex</code> for our use case, you should define it like this:</p>
+<pre><code>flex: 2 1 auto;  /* (&lt;flex-grow&gt; | &lt;flex-shrink&gt; | &lt;flex-basis&gt;) */</code></pre>
+<h3>Learning Flexbox</h3>
+<p>If you want to learn more about Flexbox, please check out these great resources:</p>
+<ul>
+<li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A Complete Guide to Flexbox</a> by <a href="https://css-tricks.com/author/chriscoyier/">Chris Coyier</a></li>
+<li><a href="https://chriswrightdesign.com/experiments/flexbox-adventures/">Flexbox adventures</a> by <a href="https://chriswrightdesign.com/">Chris Wright</a></li>
+<li><a href="http://flexboxfroggy.com/">Flexbox Froggy</a> by <a href="http://thomaspark.co/">Thomas Park</a></li>
+<li><a href="http://flexbox.io">What the Flexbox?</a> by <a href="http://wesbos.com/">Wes Bos</a></li>
+<li><a href="https://cvan.io/flexboxin5/">flexboxin5</a></li>
+<li><a href="http://madebymike.com.au/demos/flexbox-tester/">Flexbox Tester</a> by <a href="http://madebymike.com.au/">Mike Riethmuller</a></li>
+</ul>
+<h3>Summary and lessons learned</h3>
+<p>Is <code>flex-grow</code> weird? Nah, not at all. We just have to understand how it works and what it does. If an element has <code>flex-grow</code> set to <code>3</code> it does not mean that it's 3 times bigger than an element that has <code>flex-grow</code> set to 1, but it means that it gets 3 times more pixels added to its initial width than the other element.</p>
+<p>I learned my lesson by testing flex-grow with <a href="http://codepen.io/matuzo/pen/zvXQyj">two empty elements</a>, which gave me a completely different understanding of what the property <a href="http://codepen.io/matuzo/pen/ZQEWjg">actually does</a> and this of course led to wrong conclusions. You should check out new stuff in an environment that is as realistic as possible, to get the best impression of how it really works and behaves.</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-236158" class="share-facebook sd-button no-icon" href="https://css-tricks.com/flex-grow-is-weird/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-236158" class="share-twitter sd-button no-icon" href="https://css-tricks.com/flex-grow-is-weird/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline">
+      Related Posts
+      <a href="https://jetpack.com/"> ...powered by Jetpack!</a>
+    </h3>
+    <a href="https://jetpack.com/" class="jetpack-related-posts-ad">
+      <strong>The Jetpack WordPress plugin</strong> runs on this site, powering not just the related posts below, but security and backups, Markdown support, site search, comment form, social network connections, and more!
+      <img src="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/ads/wordpress/jetpack-astronaut.png" alt="Jetpack Astronaut">
+    </a>
+
+    
+</div>
+    </div>
+
+  </article>
+
+  <div class="end-of-article-ads">
+
+      <div class="bsap-doubles side-by-side">
+
+      <div id="bsap_1250418" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+
+      <a href="https://templates.netlify.com/?utm_source=css-tricks&utm_medium=display&utm_campaign=0718" class="netlify-banner-ad">
+        <img src="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/ads/netlify/netlify-try-template.png" alt="">
+      </a>
+
+    </div>
+  
+</div>
+
+<div class="comments-col">
+      <div class="module-comments">
+      <section id="comments">
+
+
+
+  <h2 class="comments-title">
+    Comments
+  </h2>
+
+  <p class="center hide" id="show-comments-wrap">
+    <button id="show-comments-button" class="button">Show Comments</button>
+  </p>
+
+  <ol class="commentlist group" id="commentlist">
+    
+    <li class="comment even thread-even depth-1" id="li-comment-1598731">
+
+      <div class="grid group comment-wrap" id="comment-1598731">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/90a1ce4443276910119d1cb4b3478623?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Ran Davidovitz</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598731"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-26T12:43:06+00:00">December 26, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thanks for sharing, it is very tampting to use flex CSS but is there a guerantee that it will be supported in all browsers ?</p>
+<p>Is there an end to all the hack$ ;)</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment odd alt depth-2" id="li-comment-1598733">
+
+      <div class="grid group comment-wrap" id="comment-1598733">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/09ece0ae30378eb64774d14247609cbe?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">fergergerg</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598733"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-26T12:56:33+00:00">December 26, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>There has been support across all modern browsers for years. This doesn&#8217;t mean that there is no more need for hacks, since flexbox can be quite buggy.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment even depth-2" id="li-comment-1598738">
+
+      <div class="grid group comment-wrap" id="comment-1598738">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598738"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-27T02:57:18+00:00">December 27, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>You are welcome! If you progressively enhance your websites and use Modernizr for feature detection, I&#8217;d say you&#8217;re good to go (<a href="http://caniuse.com/#search=Flexbox" rel="nofollow">http://caniuse.com/#search=Flexbox</a>). With the <a href="https://modernizr.com/docs" rel="nofollow">current version of Modernizr</a> you are able to detect support for the current implementation of Flexbox, the old one and the one that lacks support for flex-wrap.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1598732">
+
+      <div class="grid group comment-wrap" id="comment-1598732">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/82d4a433354f5a86318582b7a9819926?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Robert</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598732"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-26T12:54:35+00:00">December 26, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thanks for this post, Manuel!</p>
+<p>Another fantastic way to learn all things Flexbox is with Landon Schopp&#8217;s eBook, <a href="https://unravelingflexbox.com/" rel="nofollow">Unraveling Flexbox</a>.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1598739">
+
+      <div class="grid group comment-wrap" id="comment-1598739">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598739"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-27T03:02:59+00:00">December 27, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>You&#8217;re welcome! Thank you, looks promising, I will check it out.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1598740">
+
+      <div class="grid group comment-wrap" id="comment-1598740">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/a835b4b084a895bbfe55a06dbf7dcd43?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Brendan</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598740"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-27T04:58:09+00:00">December 27, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Great post, thank you!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1598752">
+
+      <div class="grid group comment-wrap" id="comment-1598752">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598752"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T09:01:43+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thank you, I appreciate it!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment byuser comment-author-paulob odd alt thread-odd thread-alt depth-1" id="li-comment-1598741">
+
+      <div class="grid group comment-wrap" id="comment-1598741">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/0e4f89ff533ddbbf8b21b6e42c7dbd9a?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">paulob</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598741"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-27T06:05:51+00:00">December 27, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Hi,</p>
+<p>Nicely explained article,</p>
+<p>Something you may wish to correct is that you made a similar mistake to your original in your holy grail layout (the second time that CSS Tricks has got this wrong by the way ;)) in that you have not added enough content into your section element to see what the full effect will be like.</p>
+<p>You will find that your 150px aside columns do not remain at 150px but squash when the middle column has more content.Y ou need to set flex-shrink to zero.</p>
+<p>&#8221;&#8217;aside {<br />
+  flex-basis: 150px;<br />
+  flex-shrink:0;<br />
+}<br />
+&#8221;&#8217;<br />
+Otherwise good job.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1598743">
+
+      <div class="grid group comment-wrap" id="comment-1598743">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598743"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-27T07:33:42+00:00">December 27, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>You&#8217;ve got me there ;) Thank you for your feedback! I have updated the Pen.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1598748">
+
+      <div class="grid group comment-wrap" id="comment-1598748">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/b591ab3f77c30d1f49c44630e13b1c8e?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Roi</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598748"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T03:37:02+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Hi,<br />
+in the 3 column liquid layout example, is there a difference between using &#8220;flex-basis:150px&#8221; and simply using &#8220;width:150px&#8221;?</p>
+<p>Thanks, and great article by the way ;)</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1598750">
+
+      <div class="grid group comment-wrap" id="comment-1598750">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/b17f9dafa66360baf5243dd8fcba5b39?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Igor Karavaev</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598750"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T06:10:11+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Flex-basis applicable always along main axis of flex-container, width only for horizontal axis of element. You&#8217;re may see the difference with &#8216;flex-direction: column;&#8217; property. <a href="http://codepen.io/anon/pen/zroYEP?editors=110" rel="nofollow">http://codepen.io/anon/pen/zroYEP?editors=110</a></p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1598751">
+
+      <div class="grid group comment-wrap" id="comment-1598751">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/ae7fc26ea1ec7bec8f6e67f96b241720?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">oliver</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598751"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T07:08:49+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>If you&#8217;re setting &#8220;flex-basis: 0&#8221; the content shouldn&#8217;t be interesting, flexbox is just using the flex-grow or flex-shrink properties to calculate the width as you wanted in your first example.</p>
+<p>So try the following code in the second example with more content in the aside and the result should be the same as in example1:</p>
+<pre><code>section {
+  flex: 2 2 0;
+}
+
+aside {
+  flex: 1 1 0;
+}
+</code></pre>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1598753">
+
+      <div class="grid group comment-wrap" id="comment-1598753">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/ae7fc26ea1ec7bec8f6e67f96b241720?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">oliver</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598753"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T09:31:51+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>here is the example:</p>
+<p><iframe id="cp_embed_MKbwyd" src="https://codepen.io/oliver41/embed/preview/MKbwyd?height=300&amp;slug-hash=MKbwyd&amp;default-tab=result&amp;host=http%3A%2F%2Fcodepen.io" scrolling="no" frameborder="0" height="300" allowtransparency="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe></p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt depth-2" id="li-comment-1598755">
+
+      <div class="grid group comment-wrap" id="comment-1598755">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598755"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T10:07:57+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Yes, of course. It&#8217;s basically the same calculation as in the explanation of the first  example (in “Alright, but why does the first demo work?“), but with setting the width explicitly . Thanks for pointing that out.</p>
+<p>As it can be seen in your demo, you could actually just write <code>flex: 2</code> and <code>flex: 1</code>, because the shorthand <a href="https://drafts.csswg.org/css-flexbox/#valdef-flex-flex-basis" rel="nofollow">sets <code>flex-basis</code> to zero</a>.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment even depth-2" id="li-comment-1598756">
+
+      <div class="grid group comment-wrap" id="comment-1598756">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/ae7fc26ea1ec7bec8f6e67f96b241720?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">oliver</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598756"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T10:18:43+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>No, we&#8217;re talking about the 2nd example where you have the content inside. You need to set the flex-basis to 0px, if not it is set to auto and the aside is taking up way more width as you can see in your 2nd example and as you explained in the article.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt depth-2" id="li-comment-1598757">
+
+      <div class="grid group comment-wrap" id="comment-1598757">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/ae7fc26ea1ec7bec8f6e67f96b241720?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">oliver</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598757"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T10:28:34+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>We are not calculating anything here or setting any width at all. Just using the flex-grow and flex-shrink properties ratio (in the same way asyou did in example1, and tried in example2  just by setting flex-basis: 0px and the content doesn&#8217;t matter)</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment even depth-2" id="li-comment-1598758">
+
+      <div class="grid group comment-wrap" id="comment-1598758">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598758"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T11:00:25+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Yes, I understand, we&#8217;re talking about the same thing here. ;) I have provided the explanation and you a possible solution. The calculation explains my first example as well as your example with <code>flex-basis: 0;</code>.</p>
+<p>By the way, as we&#8217;re working on the x-axis in this example, we are actually setting the (initial) width with <code>flex-basis</code>.</p>
+<p>&gt; This component sets the flex-basis longhand and specifies the flex basis<br />
+the initial main size of the flex item, before free space is distributed according to the flex factors.</p>
+<p><a href="https://drafts.csswg.org/css-flexbox/#valdef-flex-flex-basis" rel="nofollow">https://drafts.csswg.org/css-flexbox/#valdef-flex-flex-basis</a></p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1598754">
+
+      <div class="grid group comment-wrap" id="comment-1598754">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/7a4334b0f93e189071d54541999bf98a?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Sumit</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598754"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T09:59:20+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Awesome post man! We use flexbox for some big apps right now and this post gave me some nice insights cause I had the same problem with flex-grow but wasn&#8217;t sure how exactly it works up until now.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1598765">
+
+      <div class="grid group comment-wrap" id="comment-1598765">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598765"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-29T03:09:50+00:00">December 29, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thanks! Pleased to hear that.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1598763">
+
+      <div class="grid group comment-wrap" id="comment-1598763">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/9ce790c9d5b6f30943562859e8f1b58c?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Thien</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598763"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-28T23:48:52+00:00">December 28, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thank you! It takes me a lot of time to realize all these things too.</p>
+<p>In practice, I also see that there are two cases I used a lot:</p>
+<pre><code>// expand it (don't care about initial width)
+flex: 1 0 0;
+
+// don't expand it (keep initial width)
+flex: 0 0 auto;
+</code></pre>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1598766">
+
+      <div class="grid group comment-wrap" id="comment-1598766">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598766"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-29T03:10:38+00:00">December 29, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thank you for sharing!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1 buried" id="li-comment-1598764">
+
+      <div class="grid group comment-wrap" id="comment-1598764">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/d43bcae950f365f81f9cb1d14d953d76?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Pawel Grzybek</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598764"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-29T03:00:27+00:00">December 29, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Great post. Thanks Manuel!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1599105">
+
+      <div class="grid group comment-wrap" id="comment-1599105">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1599105"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-01-16T02:28:57+00:00">January 16, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thank you, Pawel!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1598788">
+
+      <div class="grid group comment-wrap" id="comment-1598788">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/747d661bd97888a21706eb506b2a19c5?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Todd</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598788"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-30T03:52:34+00:00">December 30, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Awesome! Explained really well. That&#8217;s been a big help, thanks.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1599106">
+
+      <div class="grid group comment-wrap" id="comment-1599106">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1599106"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-01-16T02:30:58+00:00">January 16, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thank you, glad to hear that!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1598812">
+
+      <div class="grid group comment-wrap" id="comment-1598812">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/faefdf63f70da1a86a82c3edd3acb15d?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Karen Menezes</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598812"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2015-12-31T01:54:42+00:00">December 31, 2015</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Lovely article. Flex grow, shrink and basis can really trip you if you&#8217;re not careful. The key to understanding flexbox is understand axes, lines and how flex items are quite accommodating and try to use up free white-space intelligently. Flexbox doesn&#8217;t always work how you expect it, but it&#8217;s often the axes or the white-space that&#8217;s the cause of the confusion. Over a year into using flexbox, and I&#8217;m still learning. Articles like yours are super helpful :)</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1599104">
+
+      <div class="grid group comment-wrap" id="comment-1599104">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1599104"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-01-16T02:24:32+00:00">January 16, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thank you! We&#8217;re all in the same boat here. Flexbox offers so many new properties and possible ways of combining them, that at some point it can be quite intimidating. We just have to keep using these new properties and learning about them. ;)</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1598923">
+
+      <div class="grid group comment-wrap" id="comment-1598923">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/0d3661968f2b12b7c385a43f0321f592?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Davide Rizzo</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1598923"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-01-06T16:52:04+00:00">January 6, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Absolutely brilliant explanation!<br />
+I have been using flexbox a lot recently and the second I saw your space division diagram I finally &#8216;got&#8217; flex-grow.<br />
+Understanding this completely lets you use it with much more confidence in more situations</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment even depth-2" id="li-comment-1599103">
+
+      <div class="grid group comment-wrap" id="comment-1599103">
+
+        <div class="comment-avatar grid-1-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="50" height="50" class="lazyload-gravatar" alt="User Avatar" data-src="https://secure.gravatar.com/avatar/fee3aee3642c55f15adfcbeab11e6bb6?s=160&d=retro&r=pg">
+        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Manuel Matuzovic</div> <div class="comment-time"><a href="https://css-tricks.com/flex-grow-is-weird/#comment-1599103"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-01-16T02:17:33+00:00">January 16, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Thank you for the nice feedback. I&#8217;m glad my article helped!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+  </ol>
+
+
+
+<div class="comments-closed">
+  This comment thread is closed. If you have important information to share, please <a href="/contact/">contact us</a>.
+</div>
+
+
+</section>    </div>
+  </div>
+</div>
+
+  <aside class="entry-unrelated sidebar sidebar-right">
+
+  
+          <div id="all-ads"></div>
+    
+  
+</aside>
+
+
+  </div>
+
+  <footer class="site-footer footer-newsletter">
+
+    <div class="footer-section-1"></div>
+
+    <div class="footer-section-2">
+
+      <img src="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/images/get-the-newsletter.png" alt="Get the Newsletter!">
+
+      <form action="//chriscoyier.us2.list-manage.com/subscribe/post?u=155f5a9ccc4e24c318130cace&amp;id=197f127a68" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+        <p class="mc-field-group">
+          <label for="mce-EMAIL" class="screen-reader">Email Address</label>
+          <input type="email" name="EMAIL" class="required email mailchimp-email-input" id="mce-EMAIL">
+          <svg class="icon-email" width="20px" height="15px">
+            <use xlink:href="#icon-email"></use>
+          </svg>
+          <input type="submit" value="Subscribe" name="Subscribe" id="mc-embedded-subscribe" class="button subscribe-button">
+        </p>
+        <div id="mce-responses" class="clear">
+          <div class="response" id="mce-error-response" style="display:none"></div>
+          <div class="response" id="mce-success-response" style="display:none"></div>
+        </div>
+        <div style="position: absolute; left: -9999px; top: -9999px"><input type="text" name="b_155f5a9ccc4e24c318130cace_197f127a68" value=""></div>
+
+      </form>
+    </div>
+
+    <div class="footer-section-3">
+      Lots of great stuff that isn't published anywhere else!
+    </div>
+
+  </footer>
+
+  <footer class="site-footer footer-mediatemple">
+
+    <div class="footer-section-1"></div>
+    <div class="footer-section-2">
+      <a href="https://mediatemple.net/landing/csstricks/?utm_source=CSS-Tricks&utm_medium=display&utm_campaign=heaeder-box"><img class="mt-img" src="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/images/mediatemple-logo-white-superwide.svg" alt="Media Temple"></a>
+    </div>
+    <div class="footer-section-3">
+      <a href="https://mediatemple.net/landing/csstricks/?utm_source=CSS-Tricks&utm_medium=display&utm_campaign=heaeder-box">CSS-Tricks web host since day one. Save 20% with code <strong>CSSTRICKS</strong>.</a>
+    </div>
+
+  </footer>
+
+  <footer class="site-footer footer-colophon">
+
+    <div class="footer-section-1">
+      <svg class="icon-footer-star" width="280px" height="280px">
+        <use xlink:href="#icon-logo-star"></use>
+      </svg>
+    </div>
+
+    <div class="footer-section-2">
+      <div>
+        <p>CSS-Tricks* is created, written by, and maintained by <a href="http://chriscoyier.net">Chris Coyier</a> and <a href="/about/">a team</a> of swell people. It is built on <a href="http://wordpress.org/">WordPress</a>, hosted by <a href="https://mediatemple.net/landing/csstricks/?utm_source=CSS-Tricks&utm_medium=display&utm_campaign=footer-link">Media Temple</a>, and the assets are served by <a href="http://tracking.maxcdn.com/c/13088/3982/378">MaxCDN</a>. It is made possible through <a href="/advertising/">sponsorships</a> from products and services we like.</p>
+
+        <p class="mega-big-time-warning"><small>*May or may not contain any actual "CSS" or "Tricks".</small></p>
+
+        <a class="twitter-follow-button" href="https://twitter.com/Real_CSS_Tricks">
+          Follow @Real_CSS_Tricks
+        </a>
+      </div>
+
+      <nav>
+        <a href="/contact/" class="footer-contact-link">Contact</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archives</a>
+        <a href="/advertising/">Advertise</a>
+        <a href="/jobs/">Jobs</a>
+        <a href="/license/">License</a>
+        <a href="/subscription-options/">Subscribe</a>
+        <a href="/random">Random</a>
+        <a href="/guest-posting/">Guest Posting</a>
+      </nav>
+
+    </div>
+
+    <div class="footer-section-3">
+
+      <div class="module module-jobs">
+
+  <h4 class="h4">Front-End Jobs</h4>
+
+  
+  <ul class="job-list">
+
+        <li>
+            <a href="https://codepen.io/url/job/rEvBVn">
+        <strong>
+          Lullabot        </strong>
+        is hiring a
+        Front-End Drupal Developer      </a>
+    </li>
+        <li>
+            <a href="https://codepen.io/url/job/rYxoVZ">
+        <strong>
+          Rain        </strong>
+        is hiring a
+        Front End Developer      </a>
+    </li>
+        <li>
+            <a href="https://codepen.io/url/job/rkodKr">
+        <strong>
+          Esports Mogul Asia-Pacific        </strong>
+        is hiring a
+        React Native Mobile Engineer      </a>
+    </li>
+    
+  </ul>
+
+  <div class="button-wrap">
+
+    <a href="/jobs/" class="button full-width-button">See More Jobs</a>
+    <a href="https://codepen.io/job/new/" class="button full-width-button">Post a Job</a>
+  </div>
+
+</div>
+    </div>
+
+  </footer>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none"><symbol id="icon-anchor" viewbox="0 0 54.89 64"><title>icon-anchor</title><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M26.96 13v50"/><path fill="none" stroke="#000" stroke-linejoin="bevel" stroke-width="2" d="M13.96 50l-10-3-3 10M39.96 50l10-3 4 10"/><path d="M49.71 47A24 24 0 0 1 27 63 24 24 0 0 1 4.21 47M17.96 17h18" fill="none" stroke="#000" stroke-linejoin="bevel" stroke-width="2"/><circle cx="26.96" cy="7" r="6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/></symbol><symbol id="icon-close" viewbox="0 0 95.08 95.09"><title>icon-close</title><path d="M58.31 47.47l34.58-34.58a7.63 7.63 0 0 0 0-10.69 7.63 7.63 0 0 0-10.69 0L47.62 36.78 13 2.19a7.63 7.63 0 0 0-10.69 0 7.63 7.63 0 0 0 0 10.69l34.6 34.6L2.33 82.07a7.29 7.29 0 0 0 0 10.69 7.63 7.63 0 0 0 10.69 0l34.6-34.6 34.6 34.6a7.27 7.27 0 0 0 10.68 0 7.63 7.63 0 0 0 0-10.69z" data-name="Layer 1"/></symbol><symbol id="icon-email" viewbox="0 0 100 68.89"><title>icon-email</title><path d="M36.25 38.44L47.74 49.1a3.33 3.33 0 0 0 4.51 0l11.5-10.66 24.69 23.78H11.56zM93.33 11v46.6L68.68 33.85zM6.67 11l24.65 22.85L6.67 57.64zm5.1-4.37h76.46L50 42.12zM4.44 0A4.51 4.51 0 0 0 0 4.44v60a4.51 4.51 0 0 0 4.44 4.44h91.12a4.51 4.51 0 0 0 4.44-4.44v-60A4.51 4.51 0 0 0 95.56 0z" data-name="Layer 1"/></symbol><symbol id="icon-link" viewbox="0 0 100 58.84"><title>icon-link</title><path d="M78.47 48H49.21a10.66 10.66 0 0 1-9-4.91h10.58A21.57 21.57 0 0 0 71.7 26.64h6.76a10.67 10.67 0 0 1 0 21.33zm-67.6-26.47a10.67 10.67 0 0 1 10.67-10.66H50.8A10.59 10.59 0 0 1 58.34 14a10.94 10.94 0 0 1 1.43 1.79H49.21a21.57 21.57 0 0 0-20.92 16.4h-6.76a10.67 10.67 0 0 1-10.66-10.66zm39.92 10.66H39.86a10.68 10.68 0 0 1 9.35-5.54h10.93a10.67 10.67 0 0 1-9.35 5.54zM100 37.31a21.53 21.53 0 0 0-21.53-21.53h-6.92A21.53 21.53 0 0 0 50.8 0H21.54a21.53 21.53 0 0 0 0 43.06h6.83v-.31A21.41 21.41 0 0 0 34 52.53a21.4 21.4 0 0 0 15.2 6.31h29.26A21.56 21.56 0 0 0 100 37.31z"/></symbol><symbol id="icon-logo-star" viewbox="0 0 362.62 388.52"><title>icon-logo-star</title><path d="M156.58 239l-88.3 64.75c-10.59 7.06-18.84 11.77-29.43 11.77-21.19 0-38.85-18.84-38.85-40 0-17.69 14.13-30.64 27.08-36.52l103.6-44.74-103.6-45.92C13 142.46 0 129.51 0 111.85 0 90.66 18.84 73 40 73c10.6 0 17.66 3.53 28.25 11.77l88.3 64.75-11.74-104.78C141.28 20 157.76 0 181.31 0s40 18.84 36.5 43.56L206 149.52l88.3-64.75C304.93 76.53 313.17 73 323.77 73a39.2 39.2 0 0 1 38.85 38.85c0 18.84-12.95 30.61-27.08 36.5l-103.61 45.91L335.54 239c14.13 5.88 27.08 18.83 27.08 37.67 0 21.19-18.84 38.85-40 38.85-9.42 0-17.66-4.71-28.26-11.77L206 239l11.77 104.78c3.53 24.72-12.95 44.74-36.5 44.74s-40-18.84-36.5-43.56z"/></symbol><symbol id="icon-menu" viewbox="0 0 100 68.42"><title>icon-menu</title><path d="M94.73 10.53H5.27c-7 0-7-10.53 0-10.53h89.46c6.88.14 6.88 10.38 0 10.53zm0 18.42H5.27c-7 0-7 10.53 0 10.53h89.46c6.86-.17 6.86-10.38 0-10.53zm0 28.94H5.27c-7 0-7 10.53 0 10.53h89.46c7.03 0 7.03-10.53 0-10.53z" data-name="Layer 1"/></symbol><symbol id="icon-nav-almanac" viewbox="0 0 64 64"><path fill="none" d="M7 1h46v62H7z"/><path fill="none" vector-effect="non-scaling-stroke" d="M15 63V2M20 15h28M20 21h28"/></symbol><symbol id="icon-nav-forums" viewbox="0 0 64 64"><path d="M10 15h44v2H10zM10 25h44v2H10zM10 35h44v2H10z"/><path d="M17 61.174L32.37 48H64V4H0v44h17v13.174zM2 46V6h60v40H31.63L19 56.826V46H2z"/></symbol><symbol id="icon-nav-gallery" viewbox="0 0 64 64"><path d="M0 54h64V10H0v44zm2-2v-4.544l21.952-19.09 12.156 12.156 6.051-8.068L62 49.459V52H2zm60-40v34.826l-20.16-17.28-5.949 7.932-11.843-11.844L2 44.805V12h60z"/><path d="M51 28c3.309 0 6-2.691 6-6s-2.691-6-6-6-6 2.691-6 6 2.691 6 6 6zm0-10c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4z"/></symbol><symbol id="icon-nav-guide" viewbox="0 0 64 56.9"><title>icon-nav-guide</title><path d="M1 55.45l21-8 20 8 21-8v-46l-21 8-20-8-21 8v46zM22 1.45v46M42 9.45v46"/></symbol><symbol id="icon-nav-home" viewbox="0 0 64 64"><path d="M32 3L2 33h9v30h12V47h16v16h12V33h11z"/></symbol><symbol id="icon-nav-jobs" viewbox="0 0 64 64"><path d="M41 37.586L23.414 20l12-12-5.305-5.302-.688.486c-.025.018-2.537 1.769-5.671 1.769-2.244 0-4.277-.896-6.043-2.66L17 1.586-.414 19 12 31.414l10-10L39.586 39l-3 3L57 62.414 64.414 55 44 34.586l-3 3zM2.414 19L17.026 4.388c1.983 1.703 4.241 2.565 6.724 2.565 2.722 0 4.992-1.057 6.103-1.687L32.586 8 12 28.586 2.414 19zM57 59.586L39.414 42 44 37.414 61.586 55 57 59.586z"/></symbol><symbol id="icon-nav-newsletter" viewbox="0 0 64 64"><path d="M64 12H0v39h64V12zm-4.395 2L32 31.81 4.395 14h55.21zM2 49V14.835L32 34.19l30-19.355V49H2z"/></symbol><symbol id="icon-nav-shop" viewbox="0 0 64 64"><path d="M44 18h10v45H10V18h10z"/><path d="M22 24V11c0-5.523 4.477-10 10-10s10 4.477 10 10v13"/></symbol><symbol id="icon-nav-snippets" viewbox="0 0 64 64"><path d="M0 64h64.414L0-.414V64zm2-9h6v-2H2v-6h4v-2H2v-6h6v-2H2v-6h4v-2H2v-6h6v-2H2V4.414L59.586 62H2v-7z"/><path d="M13 27.586V55h27.414L13 27.586zm2 4.828L35.586 53H15V32.414zM64.375 46.375l-2.472-9.886L25-.414 17.586 7l36.903 36.903 9.886 2.472zm-2.75-2.75l-6.114-1.528L26.414 13 31 8.414l29.097 29.097 1.528 6.114zM25 2.414L29.586 7 25 11.586 20.414 7 25 2.414z"/></symbol><symbol id="icon-nav-video" viewbox="0 0 64 64"><path d="M46 30l17-10v32L46 42v10H1V20h45zM6 28h4M14 28h4"/><path d="M7 36h18v10H7zM6 12h26l8 8"/></symbol><symbol id="icon-search" viewbox="0 0 100 100"><title>icon-search</title><path d="M80.65 66.78a33.55 33.55 0 0 1-47.44-47.44 33.55 33.55 0 1 1 47.44 47.44zm6.73-54.16a43.06 43.06 0 0 0-65.32 55.71L2 88.39A6.8 6.8 0 0 0 11.61 98l20.06-20.06a43.06 43.06 0 0 0 55.71-65.32z"/></symbol><symbol id="icon-star" viewbox="0 0 100 95.52"><title>icon-star</title><path d="M64.19 28.77a5.17 5.17 0 0 0 3.9 2.83s29.27-3 31.74 4.61-23 22.39-23 22.39a5.17 5.17 0 0 0-1.49 4.58s11.91 26.9 5.42 31.61S52.4 79.87 52.4 79.87a5.21 5.21 0 0 0-2.41-.6 5.14 5.14 0 0 0-2.41.6S25.68 99.5 19.2 94.79s5.42-31.61 5.42-31.61a5.18 5.18 0 0 0-1.49-4.58S-2.31 43.83.17 36.21s31.74-4.61 31.74-4.61a5.19 5.19 0 0 0 3.9-2.83S42 0 50 0s14.19 28.77 14.19 28.77z" data-name="Layer 1"/></symbol><symbol id="icon-tag" viewbox="0 0 100 99.98"><title>icon-tag</title><path d="M42 42a10.07 10.07 0 1 1 0-14.24A10 10 0 0 1 42 42zm56 6.5l-43.74-44a7.19 7.19 0 0 0-5-2.25L8 0a7.55 7.55 0 0 0-8 7v1l2.5 41a7.11 7.11 0 0 0 2.25 4.75l43.49 44a7.2 7.2 0 0 0 5.24 2.25 6.81 6.81 0 0 0 5.25-2.25L97.72 59A7.47 7.47 0 0 0 98 48.5z"/></symbol></svg>
+  	<script type="text/javascript">
+		var c = document.body.className;
+		c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+		document.body.className = c;
+	</script>
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/css-tricks.com\/flex-grow-is-weird\/":236158};
+	</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var bblpAJAX = {"ajaxurl":"https:\/\/css-tricks.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/bbpress-live-preview-css-tricks/includes/assets/js/scripts.min.js?ver=1.0.0'></script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70'></script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=3.4.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_ac04a06435d2f1633e6c4a3b9a22b897","fragment_name":"wc_fragments_ac04a06435d2f1633e6c4a3b9a22b897"};
+/* ]]> */
+</script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=3.4.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pollsL10n = {"ajax_url":"https:\/\/css-tricks.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"0","show_fading":"1"};
+/* ]]> */
+</script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/wp-polls/polls-js.js?ver=2.73.8'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var markdownify = {"ajax_url":"\/wp-admin\/admin-ajax.php","nonce":"7e515710b9"};
+/* ]]> */
+</script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/jetpack-markdown-live-preview-comments/js/markdownify.js?ver=1'></script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/jetpack/modules/widgets/search/js/search-widget.js?ver=6.2.1'></script>
+<script  src='https://cdn.css-tricks.com/wp-includes/js/wp-embed.min.js?ver=4.9.6'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script  src='https://cdn.css-tricks.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=6.2.1'></script>
+<script >
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+</script>
+<script type='text/javascript' src='https://stats.wp.com/e-201826.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:6.2.1',blog:'45537868',post:'236158',tz:'-7',srv:'css-tricks.com'} ]);
+	_stq.push([ 'clickTrackerInit', '45537868', '236158' ]);
+</script>
+
+  
+    <script>var __should_toggle_comments = false;</script>
+  
+<script src='https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-16/js/min/global-min.js?v=4.3'></script>
+
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-68528-29', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+</body>
+
+</html>
